@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx eslint *)",
+      "Bash(git check-ignore *)",
+      "Bash(grep -E \"\\\\.\\(tsx|ts|jsx|js\\)$\")",
+      "Bash(grep -E \"\\\\.\\(tsx|ts\\)$\")",
+      "Bash(grep -iv \"^$\")",
+      "Bash(kill -9 85630)",
+      "Bash(lsof -ti:3000 -ti:3002)",
+      "Bash(xargs -r kill -9)",
+      "Bash(lsof -i:3000 -i:3002)",
+      "Bash(git pull *)",
+      "Bash(git config *)",
+      "Bash(echo \"name:  $\\(git config user.name\\)\")",
+      "Bash(echo \"email: $\\(git config user.email\\)\")",
+      "Bash(timeout 300 npx next build)",
+      "Bash(git restore *)",
+      "Bash(git ls-remote *)",
+      "Bash(npx supabase *)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(echo \"exit-grep: $?\")",
+      "Bash(echo \"grep-exit: $?\")",
+      "Bash(xargs -I{} basename {} .ts)",
+      "Bash(command -v pandoc)",
+      "Bash(command -v unzip)",
+      "Bash(python3 -)",
+      "Bash(echo \"grep-exit \\(empty=clean\\): $?\")",
+      "Bash(chmod +x /tmp/itechplanner/run.sh)",
+      "Bash(bash -n /tmp/itechplanner/run.sh)",
+      "Bash(python3 -c \"import ast; ast.parse\\(open\\('run.py'\\).read\\(\\)\\); print\\('syntax OK'\\)\")",
+      "Bash(chmod +x run.py)",
+      "Bash(echo \"eslint-exit: $?\")"
+    ]
+  }
+}

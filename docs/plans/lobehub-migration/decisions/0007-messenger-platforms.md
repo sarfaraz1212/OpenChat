@@ -1,0 +1,21 @@
+# 0007 — Messenger platforms (superseded: all messenger integrations are out of scope)
+
+> **Superseded 2026-09-20.** The user removed messenger integrations from scope entirely (this was Phase 9), including the three platforms marked "Kept" below. Nothing here is being built. The analysis is kept as reference in case the decision is ever reversed.
+
+## Context
+
+LobeHub has five messenger bot integrations (`apps/server/src/services/bot/platforms/*`): Feishu, WeChat, QQ, iMessage, LINE (Discord/Slack/Telegram also exist upstream but weren't in scope for this research pass). Detailed per-platform findings are in `research/03-exotic-subsystems-feasibility.md` §3.
+
+## Decision
+
+| Platform    | Status       | Why                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ----------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Feishu/Lark | Kept         | Official Open Platform REST API, stateless webhook by default (an optional persistent-WS mode exists for apps that can't expose a public URL — not needed here). Needs a self-registered Feishu app.                                                                                                                                                                                                                     |
+| QQ          | Kept         | Official QQ Open Platform Bot API, stateless HTTP webhook, Ed25519-signed. Note: QQ itself disabled proactive bot messages in April 2025 — only passive, message-triggered replies work, a platform limitation, not an implementation gap.                                                                                                                                                                               |
+| LINE        | Kept         | Official LINE Messaging API, stateless webhook, HMAC-signature verified. Needs a LINE Developers Console channel.                                                                                                                                                                                                                                                                                                        |
+| WeChat      | **Excluded** | Not the official WeChat Official Account API — an unofficial/gray-market protocol (`ilinkai.weixin.qq.com`) requiring QR-scan login of a **real personal WeChat account** and a ~35s long-poll loop to receive messages. Real risk: Tencent banning that person's account for automation. Also technically awkward (needs a Durable Object or Queue+cron to sustain the poll; a bare Worker request can't loop forever). |
+| iMessage    | **Excluded** | Structurally requires a physical/virtual Mac running Messages + the third-party BlueBubbles Server + the LobeHub Desktop Electron app as a local bridge. Desktop apps are already out of scope, and no Cloudflare product substitutes for "a Mac somewhere."                                                                                                                                                             |
+
+## Consequences
+
+Phase 9 ports three adapters, not five. All three kept platforms are stateless-HTTP-webhook-shaped and map directly onto Hono routes with no persistent-connection infrastructure needed. Each requires the deploying organization to separately register a developer account/app with that platform and obtain credentials — this is an operational/logistics step for whoever runs OpenChat, not something the code can provide.

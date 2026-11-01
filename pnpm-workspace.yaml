@@ -1,0 +1,13 @@
+# Hoisted node_modules, kept from the OpenNext era; see .npmrc.
+nodeLinker: hoisted
+
+# `pnpm build` otherwise re-runs a dependency check on every invocation, which
+# re-resolves optional cross-platform binaries and stalls the build.
+verifyDepsBeforeRun: false
+
+# Dependencies allowed to run install scripts. esbuild and workerd ship native
+# binaries that Vite and the Workers runtime need.
+allowBuilds:
+  esbuild: true
+  sharp: false
+  workerd: true

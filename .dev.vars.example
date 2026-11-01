@@ -1,0 +1,7 @@
+# Local-only secrets for `pnpm dev` (copy to .dev.vars and fill in).
+# Never commit .dev.vars.
+CSRF_SECRET=
+
+# Workers AI's OpenAI-compatible REST endpoint. Keep these in .dev.vars only.
+CLOUDFLARE_ACCOUNT_ID=
+CLOUDFLARE_API_TOKEN=

@@ -1,0 +1,28 @@
+# Replaces the GitHub Actions workflows this repo carried from before the
+# Cloudflare migration: the remote is GitLab, so those never ran, and they
+# referenced npm, .next and Docker, none of which this app uses any more.
+#
+# Checks only. Deploying stays manual and deliberate — see DEPLOY.md.
+default:
+  image: node:24
+  before_script:
+    - corepack enable
+    - pnpm install --frozen-lockfile
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - .pnpm-store
+
+variables:
+  PNPM_HOME: "$CI_PROJECT_DIR/.pnpm-store"
+
+check:
+  stage: test
+  script:
+    - pnpm type-check
+    - pnpm lint
+    - pnpm format:check
+    - pnpm test
+    - pnpm build

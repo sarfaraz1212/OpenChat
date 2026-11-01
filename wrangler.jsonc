@@ -1,0 +1,86 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+
+  // Phase 14 cutover: this build now takes the production Worker name.
+  "name": "openchat",
+  "main": "src/worker/index.ts",
+  "compatibility_date": "2026-08-14",
+
+  // Static assets (the Vite-built SPA) are served by the platform. The Worker
+  // only runs first for /api/*; every other path falls through to the SPA.
+  // @cloudflare/vite-plugin supplies the assets directory from the client build.
+  "assets": {
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"],
+  },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "openchat",
+      // Create this in your own Cloudflare account (`npx wrangler d1 create openchat`)
+      // and paste the id here. This placeholder is not a real database.
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations",
+    },
+  ],
+
+  // Uploaded knowledge-base files. Bucket names are deliberately not the legacy
+  // app's, so this Worker cannot touch production objects; create the real
+  // bucket at the Phase 14 cutover.
+  "r2_buckets": [
+    { "binding": "FILES", "bucket_name": "openchat-v2-files" },
+    // Generated and edited images (gallery, background removal, enhancer),
+    // stored as {userId}/{uuid}.{ext}. Not the legacy bucket; existing objects
+    // are copied over at cutover (DEPLOY.md).
+    { "binding": "IMAGES", "bucket_name": "openchat-v2-images" },
+  ],
+
+  // Document-chunk embeddings for retrieval. 1024 dimensions / cosine, the
+  // shape of @cf/baai/bge-m3. Not created yet (see STATUS); tests fake it.
+  "vectorize": [
+    { "binding": "KB_VECTORS", "index_name": "openchat-v2-kb" },
+    // User memories: a separate index from the knowledge base's (decision 0004),
+    // same 1024 dimensions / cosine. Also not created yet.
+    { "binding": "MEMORY_VECTORS", "index_name": "openchat-v2-memory" },
+  ],
+
+  // Background memory extraction after each reply (replaces Upstash Workflow).
+  "workflows": [
+    {
+      "name": "openchat-v2-memory-extraction",
+      "binding": "MEMORY_WORKFLOW",
+      "class_name": "MemoryExtractionWorkflow",
+    },
+    // Advances a goal tick by tick until it finishes, pauses or stops.
+    {
+      "name": "openchat-v2-goal-run",
+      "binding": "GOAL_WORKFLOW",
+      "class_name": "GoalRunWorkflow",
+    },
+    // One Deep Research run: searches, reads and writes a report in the
+    // background while the page polls its progress.
+    {
+      "name": "openchat-v2-research-run",
+      "binding": "RESEARCH_WORKFLOW",
+      "class_name": "ResearchRunWorkflow",
+    },
+  ],
+
+  // Email the Worker sends itself through Cloudflare Email Service: password
+  // reset links. It sends nothing until EMAIL_FROM names an address on a domain
+  // onboarded under Email Service in the dashboard (DEPLOY.md). In `pnpm dev`
+  // a send is only simulated; add `"remote": true` to really send from there.
+  "send_email": [{ "name": "EMAIL" }],
+
+  // Hourly: the onboarding and re-engagement email drips. The handler is
+  // `scheduled()` in src/worker/index.ts; it does nothing until CUSTOMERIO_API_KEY
+  // and APP_URL are set, so this is safe to declare before those exist.
+  "triggers": { "crons": ["0 * * * *"] },
+
+  "observability": { "enabled": true },
+
+  // Secrets — `wrangler secret put <NAME>` (deployed) or `.dev.vars` (local),
+  // never in this file:
+  //   CSRF_SECRET  32+ random characters; signs CSRF tokens.
+}

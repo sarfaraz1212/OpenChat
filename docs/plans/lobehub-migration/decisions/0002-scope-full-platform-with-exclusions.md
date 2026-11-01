@@ -1,0 +1,34 @@
+# 0002 — Scope: full `lobehub/lobehub` platform, with named exclusions
+
+**Amended 2026-09-20:** the user also removed messenger integrations (Feishu, QQ, LINE) and sharing from scope entirely; see the last two rows of the table. Those were Phases 9 and 10 in the plan.
+
+## Context
+
+The reference clone turned out to be `lobehub/lobehub` v2.2.17 — a large, rebranded successor to the smaller "LobeChat" most people picture, including agent groups/task graphs, a device gateway, sandboxes, messenger integrations, Composio/Klavis tool marketplaces, goal tracking, a memory system, and RBAC (174 Postgres tables, 65 schema files). The user was presented with three options — (a) literal full-platform replica, (b) classic-LobeChat-sized subset, (c) subset plus named extras — and explicitly chose (a): full platform, on the Cloudflare stack (Hono + D1).
+
+Several pieces of "the full platform" turned out, on investigation, to be either impossible on the target stack or in direct conflict with other requirements already given (see research/03 for the detailed findings). Each of the following was raised individually and confirmed by the user rather than assumed:
+
+## Decision — excluded from the replica
+
+| Feature                                        | Why excluded                                                                                                                                                                                                                                                                                                        |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Community/discover marketplace page            | Explicit, original instruction.                                                                                                                                                                                                                                                                                     |
+| MCP support                                    | Explicit, original instruction.                                                                                                                                                                                                                                                                                     |
+| Pricing/billing                                | Explicit, original instruction (already stubbed to no-ops upstream anyway).                                                                                                                                                                                                                                         |
+| **Composio**                                   | Paid third-party SaaS, no self-host option, explicitly tagged `['composio', 'mcp']` in LobeHub's own code as an MCP-adjacent tool marketplace. Excluded under the same "no MCP" umbrella. User confirmed explicitly ("remove composio").                                                                            |
+| **Klavis**                                     | Already dead code upstream — a no-op compatibility stub for clients from before LobeHub's own Klavis→Composio migration. Nothing to port regardless.                                                                                                                                                                |
+| **Device Gateway**                             | Structurally pairs a cloud account to a real Electron/CLI install running on someone's machine. Desktop/CLI apps are already out of scope (web-only), so there is nothing for this feature to pair with. Its own WebSocket-hosting half isn't even in the cloned repo (LobeHub keeps it in a private sibling repo). |
+| **iMessage bot**                               | Requires a physical/virtual Mac signed into Messages, running BlueBubbles, bridged through the Desktop Electron app. No Cloudflare product replaces "a Mac somewhere" — architecturally impossible on a pure Workers stack.                                                                                         |
+| **WeChat bot**                                 | Not the official WeChat API — an unofficial, undocumented protocol requiring QR-scan login and automation of a real personal WeChat account (real risk of Tencent banning that account). Feishu, QQ, and LINE (official APIs) were initially kept, then removed too; see the last rows.                             |
+| **Desktop (Electron) and CLI apps**            | Cannot run on Cloudflare Workers; this is a web deployment.                                                                                                                                                                                                                                                         |
+| **Multi-tenant RBAC/workspaces**               | Deferred — see 0008.                                                                                                                                                                                                                                                                                                |
+| **Messenger integrations (Feishu, QQ, LINE)**  | Removed by the user on 2026-09-20 (formerly Phase 9). Not built; the copied UI and server code must not include bot channel settings or bot webhook routes. Analysis kept in 0007 and `research/03` in case it is revived.                                                                                          |
+| **Sharing (public share links, `apps/share`)** | Removed by the user on 2026-09-20 (formerly Phase 10). Not built; the copied UI and server code must not include `share` routers/routes or Share buttons/modals. There are no unauthenticated read routes for user content.                                                                                         |
+
+## Decision — explicitly in scope (the parts that make this bigger than "a chat app")
+
+Agent groups, task graphs, goal tracking, the memory/user-memory system, knowledge-base/RAG, and the cloud sandbox (code execution — reimplemented on Cloudflare's own Sandbox SDK, since neither of LobeHub's own backends for this are portable or self-hostable).
+
+## Consequences
+
+This is a multi-phase, large engineering effort (see MIGRATION_PLAN.md: 13 active phases, since Phases 9 and 10 were removed) — closer to rebuilding an agent-operations platform than a chat UI. Every phase should be read against this scope list before assuming something is in or out.

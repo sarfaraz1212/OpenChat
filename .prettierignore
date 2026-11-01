@@ -1,0 +1,13 @@
+# The read-only lobehub reference clone (1.2 GB), build artefacts, and
+# vendored files we do not own: reformatting those only creates conflicts the
+# next time they are updated from upstream.
+new/
+dist/
+.wrangler/
+pnpm-lock.yaml
+worker-configuration.d.ts
+src/worker/lib/auth/disposableDomains.generated.ts
+.agents/
+skills-lock.json
+.claude/
+.playwright-mcp/

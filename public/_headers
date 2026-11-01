@@ -1,0 +1,14 @@
+# Security headers for the SPA's static assets. Cloudflare serves these; the
+# Worker never runs for these paths (`run_worker_first` is /api/* only), so a
+# `<meta>` tag in index.html cannot replace them: browsers ignore
+# `frame-ancestors` delivered that way, and nothing else here can be set at all.
+#
+# Keep the policy below in step with the `<meta>` CSP in index.html. Where both
+# apply the browser enforces whichever is stricter, so a directive dropped here
+# is not automatically permitted.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob: https://cdn.simpleicons.org https://cdn.jsdelivr.net; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
