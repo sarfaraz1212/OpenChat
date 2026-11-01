@@ -34,7 +34,7 @@ This Code of Conduct applies within all project spaces and also in public spaces
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the maintainer at [julien.thibeaut@gmail.com](mailto:cjulien.thibeaut@gmail.com). All reports will be reviewed and handled confidentially and appropriately.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the maintainer at [singhsarfaraz5507@gmail.com](mailto:singhsarfaraz5507@gmail.com). All reports will be reviewed and handled confidentially and appropriately.
 
 Maintainers who fail to enforce this Code in good faith may face consequences as determined by other core contributors.
 

@@ -1122,6 +1122,15 @@ a {
   color: var(--color-text-secondary);
   line-height: var(--leading);
 }
+.auth-credit {
+  margin: var(--space-md) 0 0;
+  color: var(--color-text-tertiary);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+.auth-credit a {
+  color: inherit;
+}
 .auth-form {
   display: grid;
   gap: var(--space-sm);

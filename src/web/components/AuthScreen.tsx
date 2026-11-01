@@ -140,6 +140,14 @@ export function AuthScreen({
               : "Back to sign in"}
         </button>
       </section>
+      <p className="auth-credit">
+        Interface based on{" "}
+        <a href="https://github.com/lobehub/lobe-chat">LobeChat</a>
+        {" · "}
+        <a href="mailto:singhsarfaraz5507@gmail.com">
+          singhsarfaraz5507@gmail.com
+        </a>
+      </p>
     </main>
   )
 }

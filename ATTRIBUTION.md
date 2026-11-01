@@ -1,5 +1,14 @@
 # Attribution and third-party notices
 
+Maintainer: [singhsarfaraz5507@gmail.com](mailto:singhsarfaraz5507@gmail.com).
+
+## LobeChat
+
+The OpenChat interface is based on [LobeChat](https://github.com/lobehub/lobe-chat)
+by [LobeHub](https://github.com/lobehub/lobehub). The layout, chat workspace,
+and settings surfaces follow that product. OpenChat's own name and logo are
+used. No LobeChat source file is included in this repository.
+
 ## LobeHub
 
 OpenChat's feature set, data model and much of its product design are a
@@ -10,10 +19,10 @@ the five-layer user memory, the goal and task graph, the cloud sandbox tool
 interface and the usage dashboard all follow that project's design.
 
 No upstream source file is included here. The implementation is written against
-Cloudflare Workers, Hono and D1, and the upstream name, logo and copy do not
-appear anywhere a user of this app can see them. Source comments that mention
-LobeHub are provenance notes for maintainers, kept deliberately so the lineage
-of each subsystem stays traceable.
+Cloudflare Workers, Hono and D1. Source comments that mention LobeHub are
+provenance notes for maintainers, kept deliberately so the lineage of each
+subsystem stays traceable. The sign-in screen and this file credit LobeChat
+for the interface.
 
 The licensing position, including why this project proceeds as a derivative
 work and the circumstances that would require revisiting it, is recorded in

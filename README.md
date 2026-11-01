@@ -8,6 +8,11 @@
 </p>
 
 <p align="center">
+  Interface based on <a href="https://github.com/lobehub/lobe-chat">LobeChat</a>.<br>
+  Maintainer: <a href="mailto:singhsarfaraz5507@gmail.com">singhsarfaraz5507@gmail.com</a>
+</p>
+
+<p align="center">
   <img src="docs/readme/logos/meta.svg" width="28" alt="Meta">
   &nbsp;
   <img src="docs/readme/logos/openai.svg" width="28" alt="OpenAI">
@@ -141,4 +146,6 @@ Do not commit `.env` or `.dev.vars`. Both are gitignored. `.dev.vars.example` ha
 
 ## License
 
-This repository's own code is Apache-2.0. See [LICENSE](./LICENSE). The product shape follows [LobeHub](https://github.com/lobehub/lobehub), which uses the LobeHub Community License. No upstream source file is included. Read [ATTRIBUTION.md](./ATTRIBUTION.md) before you offer this to other organizations, white-label it, or resell it. The model marks in `docs/readme/logos` use the same geometry as the in-app picker.
+This repository's own code is Apache-2.0. See [LICENSE](./LICENSE). Copyright 2026 [singhsarfaraz5507@gmail.com](mailto:singhsarfaraz5507@gmail.com).
+
+The interface is based on [LobeChat](https://github.com/lobehub/lobe-chat) by [LobeHub](https://github.com/lobehub/lobehub). OpenChat does not include their source. Their project uses the LobeHub Community License. Read [ATTRIBUTION.md](./ATTRIBUTION.md) before you offer this to other organizations, white-label it, or resell it. The model marks in `docs/readme/logos` use the same geometry as the in-app picker.
