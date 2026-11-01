@@ -1,56 +1,46 @@
 <p align="center">
-  <img src="docs/readme/hero.svg" alt="OpenChat" width="920">
+  <img src="docs/readme/hero.svg" alt="OpenChat, a personal AI workspace" width="100%">
 </p>
 
 <p align="center">
-  Chat, agents, memory, files, goals, images, and research.<br>
-  Open-weight models on Cloudflare Workers AI. Your account, not a hosted service.
+  <a href="#start"><img src="docs/readme/btn-start.svg" alt="Start locally" width="180"></a>
+  &nbsp;&nbsp;
+  <a href="#models"><img src="docs/readme/btn-models.svg" alt="See the models" width="180"></a>
 </p>
 
 <p align="center">
-  Interface based on <a href="https://github.com/lobehub/lobe-chat">LobeChat</a>.<br>
-  Maintainer: <a href="mailto:singhsarfaraz5507@gmail.com">singhsarfaraz5507@gmail.com</a>
+  Interface based on <a href="https://github.com/lobehub/lobe-chat">LobeChat</a>
+  ·
+  <a href="mailto:singhsarfaraz5507@gmail.com">singhsarfaraz5507@gmail.com</a>
 </p>
 
 <p align="center">
-  <img src="docs/readme/logos/meta.svg" width="28" alt="Meta">
+  <img src="docs/readme/logos/meta.svg" width="26" alt="Meta">
   &nbsp;
-  <img src="docs/readme/logos/openai.svg" width="28" alt="OpenAI">
+  <img src="docs/readme/logos/openai.svg" width="26" alt="OpenAI">
   &nbsp;
-  <img src="docs/readme/logos/mistral.svg" width="28" alt="Mistral">
+  <img src="docs/readme/logos/mistral.svg" width="26" alt="Mistral">
   &nbsp;
-  <img src="docs/readme/logos/deepseek.svg" width="28" alt="DeepSeek">
+  <img src="docs/readme/logos/deepseek.svg" width="26" alt="DeepSeek">
   &nbsp;
-  <img src="docs/readme/logos/qwen.svg" width="28" alt="Qwen">
+  <img src="docs/readme/logos/qwen.svg" width="26" alt="Qwen">
   &nbsp;
-  <img src="docs/readme/logos/zai.svg" width="28" alt="Z.ai">
+  <img src="docs/readme/logos/zai.svg" width="26" alt="Z.ai">
   &nbsp;
-  <img src="docs/readme/logos/kimi.svg" width="28" alt="Kimi">
+  <img src="docs/readme/logos/kimi.svg" width="26" alt="Kimi">
   &nbsp;
-  <img src="docs/readme/logos/gemma.svg" width="28" alt="Gemma">
+  <img src="docs/readme/logos/gemma.svg" width="26" alt="Gemma">
   &nbsp;
-  <img src="docs/readme/logos/nvidia.svg" width="28" alt="NVIDIA">
+  <img src="docs/readme/logos/nvidia.svg" width="26" alt="NVIDIA">
 </p>
 
-The header animation is the mark floating, the lights drifting, and a line moving under the name. The marks above are the same drawings the app uses in the model picker.
+<img src="docs/readme/features.svg" alt="Chat, agents, memory, knowledge, images, and research" width="100%">
 
-## What you can do
+<a id="models"></a>
 
-| | |
-| --- | --- |
-| **Talk** | Streaming chat with an agent. A topic is the saved conversation. |
-| **Agents** | Persona, model, sampling, opening message, and attached files. |
-| **Memory** | Optional. The app extracts memories after a reply and can forget them. |
-| **Knowledge** | Upload text, embed it, and retrieve it under a reply. |
-| **Goals** | A plan broken into tasks that run in order, with a pause for review. |
-| **Images** | Generate with Workers AI. Remove a background or enhance when a Black Forest Labs key is set. |
-| **Research** | A background report from a web search key, with a PDF you export in the browser. |
+## Models
 
-There is no SMTP server in this project. Password reset mail goes out through Cloudflare Email Service when you set `EMAIL_FROM`. Product emails are optional Customer.io. Nothing is sent until you add those yourself.
-
-## Chat models
-
-All of these run on Cloudflare Workers AI. The names are the open-weight models Cloudflare hosts. OpenChat does not call OpenAI, Google, Meta, or anyone else's API. The catalog is `src/shared/models.ts`. The default is Llama 3.3 70B.
+Open-weight models hosted by Cloudflare Workers AI. OpenChat does not call OpenAI, Google, Meta, or anyone else's API. The default is Llama 3.3 70B. The list lives in `src/shared/models.ts`.
 
 | | Model | Best for |
 | --- | --- | --- |
@@ -74,64 +64,45 @@ All of these run on Cloudflare Workers AI. The names are the open-weight models 
 | <img src="docs/readme/logos/nvidia.svg" width="22" alt=""> | Nemotron 3 120B | Difficult reasoning. |
 | <img src="docs/readme/logos/meta.svg" width="22" alt=""> | Llama 3.1 8B | Short, cheap replies. |
 
-Speech uses Whisper Large V3 Turbo. Knowledge and memory embeddings use `bge-m3` (1024 dimensions, cosine).
+Speech uses Whisper Large V3 Turbo. Knowledge and memory use `bge-m3`.
 
-## Image models
+**Image models:** FLUX.2 Dev, FLUX.2 Klein 9B, FLUX.2 Klein 4B, FLUX.1 Schnell, Lucid Origin, Phoenix 1.0.
 
-| Model | Author |
-| --- | --- |
-| FLUX.2 Dev | Black Forest Labs |
-| FLUX.2 Klein 9B | Black Forest Labs |
-| FLUX.2 Klein 4B | Black Forest Labs |
-| FLUX.1 Schnell | Black Forest Labs |
-| Lucid Origin | Leonardo AI |
-| Phoenix 1.0 | Leonardo AI |
+<a id="start"></a>
 
-## Run it
-
-You need Node, pnpm 11, and a Cloudflare account of your own. This repository does not include anyone's keys or database.
-
-```bash
-pnpm install
-cp .dev.vars.example .dev.vars
-```
-
-Set `CSRF_SECRET` to 32 or more random characters. Chat also needs `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` (Workers AI only). Leave every other line empty until you want that feature.
-
-```bash
-pnpm db:migrate:local
-pnpm dev
-```
-
-`pnpm db:migrate:local` touches only the local database. Before any deploy, create a D1 database in your account and replace the placeholder `database_id` in `wrangler.jsonc`. The steps are in [DEPLOY.md](./DEPLOY.md).
-
-### Docker
-
-Docker runs that same local Worker. It does not deploy, and it does not start the code-execution image in `sandbox/Dockerfile`.
+<img src="docs/readme/steps.svg" alt="Three steps: add a secret, compose up, open the app" width="100%">
 
 ```bash
 cp .dev.vars.example .dev.vars
 ```
 
-Set `CSRF_SECRET` in `.dev.vars`, then:
+Set `CSRF_SECRET` to 32 or more random characters, then:
 
 ```bash
 docker compose up --build
 ```
 
-Open `http://localhost:5173`. The local D1 lives in the `openchat-local` volume, so the next start keeps the accounts you created. Chat still needs `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` in `.dev.vars`.
+Open http://localhost:5173. The local database stays in the `openchat-local` volume. Chat also needs `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` in `.dev.vars`.
+
+Without Docker:
+
+```bash
+pnpm install
+pnpm db:migrate:local
+pnpm dev
+```
+
+`pnpm db:migrate:local` touches only the local database. Deploy steps are in [DEPLOY.md](./DEPLOY.md). Docker does not deploy, and it does not start `sandbox/Dockerfile`.
 
 | Variable | What stays off without it |
 | --- | --- |
 | `BFL_API_KEY` | Background removal and enhance |
-| `TAVILY_API_KEY`, `PERPLEXITY_API_KEY`, or `SERPER_API_KEY` | Deep Research search. The first one set is used, in that order |
-| `EMAIL_FROM` | Password-reset mail |
+| `TAVILY_API_KEY`, `PERPLEXITY_API_KEY`, or `SERPER_API_KEY` | Deep Research. The first key set is used, in that order |
+| `EMAIL_FROM` | Password-reset mail, through Cloudflare Email Service. There is no SMTP server |
 | `CUSTOMERIO_API_KEY` and `APP_URL` | Onboarding and re-engagement mail |
 | `CRON_SECRET` | The email cron route |
 
-## Stack
-
-One Cloudflare Worker. Hono serves `/api/*`. A Vite and React Router app in `src/web` is the rest of the site. Data is D1. Files and images are R2. Embeddings are Vectorize. Memory, goals, and research run as Workflows. Code execution needs the container in `sandbox/` and stays off until you add it.
+Do not commit `.env` or `.dev.vars`. One Worker, a Vite React app, D1, R2, Vectorize, and Workflows.
 
 ```bash
 pnpm test
@@ -140,12 +111,8 @@ pnpm lint
 pnpm build
 ```
 
-## Secrets
+---
 
-Do not commit `.env` or `.dev.vars`. Both are gitignored. `.dev.vars.example` has empty values. Wrangler secrets are set with `wrangler secret put`, not in `wrangler.jsonc`. Tests use obvious stand-ins such as `cio-key`, not real credentials.
+Apache-2.0. Copyright 2026 [singhsarfaraz5507@gmail.com](mailto:singhsarfaraz5507@gmail.com).
 
-## License
-
-This repository's own code is Apache-2.0. See [LICENSE](./LICENSE). Copyright 2026 [singhsarfaraz5507@gmail.com](mailto:singhsarfaraz5507@gmail.com).
-
-The interface is based on [LobeChat](https://github.com/lobehub/lobe-chat) by [LobeHub](https://github.com/lobehub/lobehub). OpenChat does not include their source. Their project uses the LobeHub Community License. Read [ATTRIBUTION.md](./ATTRIBUTION.md) before you offer this to other organizations, white-label it, or resell it. The model marks in `docs/readme/logos` use the same geometry as the in-app picker.
+The interface is based on [LobeChat](https://github.com/lobehub/lobe-chat) by [LobeHub](https://github.com/lobehub/lobehub). This repository does not include their source. See [ATTRIBUTION.md](./ATTRIBUTION.md) and [LICENSE](./LICENSE).

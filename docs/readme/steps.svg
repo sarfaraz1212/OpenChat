@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 280" role="img" aria-labelledby="title">
+  <title id="title">Start OpenChat in three steps</title>
+  <defs>
+    <clipPath id="frame"><rect width="1200" height="280" rx="28"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="280" fill="#101114"/>
+    <text x="64" y="64" fill="#f7f4ee" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="32" font-weight="650">Start on your machine</text>
+    <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+      <rect x="64" y="96" width="340" height="140" rx="18" fill="#171a21" stroke="#2a2e38"/>
+      <text x="88" y="140" fill="#8eb6ff" font-size="14" letter-spacing="1.4">01</text>
+      <text x="88" y="172" fill="#f4f1ea" font-size="20" font-weight="650">Add a secret</text>
+      <text x="88" y="200" fill="#b7b3ab" font-size="15">Copy .dev.vars and set</text>
+      <text x="88" y="220" fill="#b7b3ab" font-size="15">CSRF_SECRET.</text>
+      <rect x="430" y="96" width="340" height="140" rx="18" fill="#171a21" stroke="#2a2e38"/>
+      <text x="454" y="140" fill="#8eb6ff" font-size="14" letter-spacing="1.4">02</text>
+      <text x="454" y="172" fill="#f4f1ea" font-size="20" font-weight="650">Compose up</text>
+      <text x="454" y="200" fill="#b7b3ab" font-size="15">Docker runs the local</text>
+      <text x="454" y="220" fill="#b7b3ab" font-size="15">Worker. It does not deploy.</text>
+      <rect x="796" y="96" width="340" height="140" rx="18" fill="#171a21" stroke="#2a2e38"/>
+      <text x="820" y="140" fill="#8eb6ff" font-size="14" letter-spacing="1.4">03</text>
+      <text x="820" y="172" fill="#f4f1ea" font-size="20" font-weight="650">Open the app</text>
+      <text x="820" y="200" fill="#b7b3ab" font-size="15">http://localhost:5173</text>
+      <text x="820" y="220" fill="#b7b3ab" font-size="15">Your database stays local.</text>
+    </g>
+  </g>
+</svg>

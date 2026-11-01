@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title">
+  <title id="title">What OpenChat includes</title>
+  <defs>
+    <clipPath id="frame"><rect width="1200" height="520" rx="28"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="520" fill="#101114"/>
+    <text x="64" y="72" fill="#f7f4ee" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="36" font-weight="650" letter-spacing="-0.6">One workspace</text>
+    <text x="64" y="106" fill="#a7a49d" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16">Everything runs on your Cloudflare account. Nothing is sent until you add a key.</text>
+
+    <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+      <g>
+        <rect x="64" y="146" width="340" height="150" rx="18" fill="#171a21" stroke="#2a2e38"/>
+        <text x="88" y="186" fill="#f4f1ea" font-size="20" font-weight="650">Chat</text>
+        <text x="88" y="218" fill="#b7b3ab" font-size="15">Streaming replies. A topic is</text>
+        <text x="88" y="240" fill="#b7b3ab" font-size="15">the saved conversation.</text>
+      </g>
+      <g>
+        <rect x="430" y="146" width="340" height="150" rx="18" fill="#171a21" stroke="#2a2e38"/>
+        <text x="454" y="186" fill="#f4f1ea" font-size="20" font-weight="650">Agents</text>
+        <text x="454" y="218" fill="#b7b3ab" font-size="15">Persona, model, sampling,</text>
+        <text x="454" y="240" fill="#b7b3ab" font-size="15">and an opening message.</text>
+      </g>
+      <g>
+        <rect x="796" y="146" width="340" height="150" rx="18" fill="#171a21" stroke="#2a2e38"/>
+        <text x="820" y="186" fill="#f4f1ea" font-size="20" font-weight="650">Memory</text>
+        <text x="820" y="218" fill="#b7b3ab" font-size="15">Optional. Extracted after a</text>
+        <text x="820" y="240" fill="#b7b3ab" font-size="15">reply, and easy to forget.</text>
+      </g>
+      <g>
+        <rect x="64" y="318" width="340" height="150" rx="18" fill="#171a21" stroke="#2a2e38"/>
+        <text x="88" y="358" fill="#f4f1ea" font-size="20" font-weight="650">Knowledge</text>
+        <text x="88" y="390" fill="#b7b3ab" font-size="15">Upload text, embed it, and</text>
+        <text x="88" y="412" fill="#b7b3ab" font-size="15">retrieve it under a reply.</text>
+      </g>
+      <g>
+        <rect x="430" y="318" width="340" height="150" rx="18" fill="#171a21" stroke="#2a2e38"/>
+        <text x="454" y="358" fill="#f4f1ea" font-size="20" font-weight="650">Images</text>
+        <text x="454" y="390" fill="#b7b3ab" font-size="15">FLUX, Lucid Origin, and</text>
+        <text x="454" y="412" fill="#b7b3ab" font-size="15">Phoenix on Workers AI.</text>
+      </g>
+      <g>
+        <rect x="796" y="318" width="340" height="150" rx="18" fill="#171a21" stroke="#2a2e38"/>
+        <text x="820" y="358" fill="#f4f1ea" font-size="20" font-weight="650">Research</text>
+        <text x="820" y="390" fill="#b7b3ab" font-size="15">A background report, then</text>
+        <text x="820" y="412" fill="#b7b3ab" font-size="15">a PDF from the browser.</text>
+      </g>
+    </g>
+  </g>
+</svg>
