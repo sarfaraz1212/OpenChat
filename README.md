@@ -1,5 +1,9 @@
+# OpenChat
+
+Self-hosted AI workspace for Cloudflare Workers AI: chat, agents, memory, knowledge, images, and research on your own account.
+
 <p align="center">
-  <img src="docs/readme/hero.svg" alt="OpenChat, a personal AI workspace" width="100%">
+  <img src="docs/readme/hero.svg" alt="OpenChat, a self-hosted AI workspace for Cloudflare Workers AI" width="100%">
 </p>
 
 <p align="center">
@@ -34,11 +38,11 @@
   <img src="docs/readme/logos/nvidia.svg" width="26" alt="NVIDIA">
 </p>
 
-<img src="docs/readme/features.svg" alt="Chat, agents, memory, knowledge, images, and research" width="100%">
+<img src="docs/readme/features.svg" alt="OpenChat features: chat, agents, memory, knowledge base, image generation, and research" width="100%">
 
 <a id="models"></a>
 
-## Models
+## Workers AI models
 
 Open-weight models hosted by Cloudflare Workers AI. OpenChat does not call OpenAI, Google, Meta, or anyone else's API. The default is Llama 3.3 70B. The list lives in `src/shared/models.ts`.
 
@@ -70,7 +74,9 @@ Speech uses Whisper Large V3 Turbo. Knowledge and memory use `bge-m3`.
 
 <a id="start"></a>
 
-<img src="docs/readme/steps.svg" alt="Three steps: add a secret, compose up, open the app" width="100%">
+## Run it locally
+
+<img src="docs/readme/steps.svg" alt="Run OpenChat locally with Docker Compose on your own machine" width="100%">
 
 ```bash
 cp .dev.vars.example .dev.vars
@@ -92,7 +98,7 @@ pnpm db:migrate:local
 pnpm dev
 ```
 
-`pnpm db:migrate:local` touches only the local database. Deploy steps are in [DEPLOY.md](./DEPLOY.md). Docker does not deploy, and it does not start `sandbox/Dockerfile`.
+`pnpm db:migrate:local` touches only the local database. [Deploy OpenChat on your own Cloudflare account](./DEPLOY.md). Docker does not deploy, and it does not start `sandbox/Dockerfile`.
 
 | Variable | What stays off without it |
 | --- | --- |
