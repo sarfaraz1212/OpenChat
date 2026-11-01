@@ -1,0 +1,16 @@
+.git
+.wrangler
+node_modules
+dist
+coverage
+new
+probe-*
+.probe-profile*
+.playwright-mcp
+.env
+.env.*
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+*.tsbuildinfo
+docs/prompts

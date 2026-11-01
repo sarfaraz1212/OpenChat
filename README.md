@@ -100,6 +100,22 @@ pnpm dev
 
 `pnpm db:migrate:local` touches only the local database. Before any deploy, create a D1 database in your account and replace the placeholder `database_id` in `wrangler.jsonc`. The steps are in [DEPLOY.md](./DEPLOY.md).
 
+### Docker
+
+Docker runs that same local Worker. It does not deploy, and it does not start the code-execution image in `sandbox/Dockerfile`.
+
+```bash
+cp .dev.vars.example .dev.vars
+```
+
+Set `CSRF_SECRET` in `.dev.vars`, then:
+
+```bash
+docker compose up --build
+```
+
+Open `http://localhost:5173`. The local D1 lives in the `openchat-local` volume, so the next start keeps the accounts you created. Chat still needs `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` in `.dev.vars`.
+
 | Variable | What stays off without it |
 | --- | --- |
 | `BFL_API_KEY` | Background removal and enhance |

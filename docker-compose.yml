@@ -1,0 +1,18 @@
+# Local app. Does not deploy, and does not use sandbox/Dockerfile.
+services:
+  openchat:
+    build: .
+    image: openchat:local
+    ports:
+      - "5173:5173"
+    env_file:
+      - .dev.vars
+    environment:
+      CI: "true"
+      WRANGLER_SEND_METRICS: "false"
+    volumes:
+      - openchat-local:/app/.wrangler
+    init: true
+
+volumes:
+  openchat-local:
