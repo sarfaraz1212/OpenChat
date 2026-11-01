@@ -40,6 +40,26 @@ Self-hosted AI workspace for Cloudflare Workers AI: chat, agents, memory, knowle
 
 <img src="docs/readme/features.svg" alt="OpenChat features: chat, agents, memory, knowledge base, image generation, and research" width="100%">
 
+## The app
+
+These are screens from a local run. The account name in them is a local test user.
+
+<p align="center">
+  <img src="docs/readme/screenshots/home.png" alt="OpenChat home, with the composer, Llama 3.3 70B, and starting ideas" width="100%">
+</p>
+
+<p align="center">
+  <img src="docs/readme/screenshots/images.png" alt="OpenChat image page, with a prompt and FLUX.2 Dev selected" width="49%">
+  &nbsp;
+  <img src="docs/readme/screenshots/memory.png" alt="OpenChat memory page, with remembering turned on" width="49%">
+</p>
+
+<p align="center">
+  <img src="docs/readme/screenshots/home-mobile.png" alt="OpenChat home on a phone-width screen" width="280">
+  &nbsp;&nbsp;
+  <img src="docs/readme/screenshots/sign-in.png" alt="OpenChat sign-in screen" width="49%">
+</p>
+
 <a id="models"></a>
 
 ## Workers AI models
